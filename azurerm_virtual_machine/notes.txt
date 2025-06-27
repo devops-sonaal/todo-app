@@ -1,0 +1,5 @@
+Note:
+The azurerm_virtual_machine resource has been superseded by the azurerm_linux_virtual_machine and azurerm_windows_virtual_machine resources. The existing azurerm_virtual_machine resource will continue to be available throughout the 3.x releases however is in a feature-frozen state to maintain compatibility - new functionality will instead be added to the azurerm_linux_virtual_machine and azurerm_windows_virtual_machine resources.
+
+#command to check vm size available
+az vm image list --location centralindia --publisher Canonical --offer ubuntu-20_04-lts --sku server --all --query "[0].{Publisher:'Canonical', Offer:'ubuntu-20_04-lts', SKU:'server', Version:'latest'}" --output table
