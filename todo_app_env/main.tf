@@ -43,23 +43,23 @@ module "frontend_VM" {
  resource_group_name =  "todoapp_rg" 
  vm_name = "frontendVM"
  vm_size = "Standard_B1s"
- admin_username = "adminuser"
- admin_password = "P@ssword123#"
+#  admin_username = ?
+#  admin_password = "P@ssword123#"
  caching = "ReadWrite"
  storage_account_type = "Standard_LRS"
  publisher = "Canonical"
- offer = "0001-com-ubuntu-server-focal"
- sku = "22_04-lts"
+offer = "0001-com-ubuntu-server-focal"
+ sku = "20_04-lts"
  subnet_todo = "frontend_subnet_todo"
  todo_vnet = "todo_vnet"
  pub_ip = "frontend_VM_public_ip"
  
 }
 
-module "frontend_VM_public_Ip" {
+module "frontend_VM_public_ip" {
   depends_on = [ module.rg_todo ]
   source = "../azurerm_public_ip"
-  public_ip = "frontend_VM_public_Ip"
+  public_ip = "frontend_VM_public_ip"
   resource_group_name = "todoapp_rg" 
   location = "West US"
   allocation_method = "Static"
@@ -75,8 +75,8 @@ module "backend_VM" {
  resource_group_name =  "todoapp_rg" 
  vm_name = "backendVM"
  vm_size = "Standard_B1s"
- admin_username = "adminuser"
- admin_password = "P@ssword123#"
+#  admin_username = ?
+#  admin_password = ?
  caching = "ReadWrite"
  storage_account_type = "Standard_LRS"
  publisher = "Canonical"
@@ -90,10 +90,10 @@ module "backend_VM" {
   
 }
 
-module "backend_VM_public_Ip" {
+module "backend_VM_public_ip" {
   depends_on = [ module.rg_todo ]
   source = "../azurerm_public_ip"
-  public_ip = "backend_VM_public_Ip"
+  public_ip = "backend_VM_public_ip"
   resource_group_name = "todoapp_rg" 
   location = "West US"
   allocation_method = "Static"
@@ -106,8 +106,8 @@ module "mssql_server" {
   name = "mssqlsrv012"
   location = "West US"
   resource_group_name = "todoapp_rg"
-  administrator_login = "missadministrator"
-  administrator_login_password = "thisIsKat11"
+  # administrator_login = "missadministrator"
+  # administrator_login_password = "thisIsKat11"
   minimum_tls_version  = "1.2"
    
 }
@@ -136,3 +136,12 @@ module "nsg_backend" {
   location = "West US"
   azurerm_resource_group = "todoapp_rg"   
 }
+
+# module "Key_vault_org" {
+#   source = "../azurerm_key_vault"
+#   depends_on = [ module.rg_todo ]
+#   name = "keyvaultorg"
+#   location = "West US"
+#   resource_group_name = "todoapp_rg" 
+  
+# }
